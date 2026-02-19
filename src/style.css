@@ -1,0 +1,391 @@
+:root {
+	color-scheme: light;
+	--green: #1aa35d;
+	--green-dark: #14814a;
+	--text: #1f2937;
+	--muted: #6b7280;
+	--bg: #ffffff;
+	--line: #e5e7eb;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Noto Sans JP", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+	color: var(--text);
+	background: var(--bg);
+	line-height: 1.7;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+.container {
+	max-width: 1120px;
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+.site-header {
+	background: #ffffff;
+	border-bottom: 4px solid var(--green);
+	padding: 0.2em 0;
+}
+
+.header-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.logo {
+	height: 70px;
+	width: auto;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 8px 16px;
+	font-size: 0.9rem;
+	font-weight: 700;
+	text-decoration: none;
+	border: 1px solid transparent;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn.official {
+	background: var(--green);
+	color: #ffffff;
+}
+
+.btn.official:hover {
+	background: var(--green-dark);
+	transform: translateY(-1px);
+}
+
+.btn.official:focus-visible {
+	outline: 3px solid rgba(26, 163, 93, 0.35);
+	outline-offset: 3px;
+}
+
+.date-box {
+	background: var(--green);
+	color: #ffffff;
+	padding: 1px 0;
+	text-align: center;
+}
+
+.date-text {
+	margin: 0;
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+.menu-box {
+	background: #a8d5ba;
+	padding: 0;
+}
+
+.menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	gap: 0;
+}
+
+.menu-item {
+	display: inline-block;
+	padding: 12px 24px;
+	text-decoration: none;
+	color: var(--text);
+	font-weight: 600;
+	background: #a8d5ba;
+	border: none;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.menu-item:hover {
+	background: #90c9a0;
+}
+
+.menu-item.active {
+	background: #ffffff;
+	color: var(--green);
+}
+
+.match-info-section {
+	background: #f9f9f9;
+	padding: 40px 0;
+}
+
+.match-info-container {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.sport-section {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.sport-title {
+	margin: 0;
+	padding: 12px 16px;
+	background: var(--green);
+	color: #ffffff;
+	font-size: 1.1rem;
+	font-weight: 700;
+	border-radius: 6px;
+}
+
+.match-loading {
+	text-align: center;
+	color: var(--muted);
+	padding: 40px 0;
+}
+
+.match-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+}
+
+.match-card {
+	background: #ffffff;
+	border-radius: 8px;
+	padding: 24px;
+	border-left: 4px solid var(--green);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.match-card-now {
+	border-left-color: #dc2626;
+}
+
+.match-title {
+	margin: 0 0 16px 0;
+	font-size: 1rem;
+}
+
+.match-label {
+	display: inline-block;
+	background: var(--green);
+	color: #ffffff;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-size: 0.85rem;
+	font-weight: 700;
+}
+
+.match-label-now {
+	background: #dc2626 !important;
+}
+
+.match-content {
+	font-size: 0.95rem;
+	line-height: 1.8;
+	color: var(--text);
+}
+
+.match-time {
+	font-weight: 700;
+	color: var(--green);
+	font-size: 1.1rem;
+	margin-bottom: 8px;
+}
+
+.match-teams {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 8px 0;
+}
+
+.team {
+	flex: 1;
+	text-align: center;
+	padding: 8px;
+	background: #f0f0f0;
+	border-radius: 4px;
+}
+
+.team.single-team {
+	flex: none;
+	width: 100%;
+}
+
+.team-vs {
+	font-weight: 700;
+	color: var(--green);
+}
+
+.match-run {
+	margin-top: 12px;
+	font-size: 0.9rem;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.no-match {
+	color: var(--muted);
+	font-style: italic;
+	text-align: center;
+	padding: 40px 0;
+}
+
+/* ページセクション */
+.page-section {
+	display: none;
+}
+
+.page-section.page-active {
+	display: block;
+}
+
+/* 試合一覧ページ */
+.schedule-container {
+	background: #f9f9f9;
+	padding: 40px 0;
+}
+
+.schedule-content {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.schedule-content h2 {
+	margin-top: 0;
+	color: var(--text);
+}
+
+.sport-schedule-section {
+	margin-top: 20px;
+}
+
+.sport-schedule-title {
+	margin: 0 0 16px 0;
+	padding: 12px 16px;
+	background: var(--green);
+	color: #ffffff;
+	font-size: 1.1rem;
+	font-weight: 700;
+	border-radius: 6px;
+}
+
+.schedule-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #ffffff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.schedule-table thead {
+	background: #e8f5f0;
+}
+
+.schedule-table th {
+	padding: 12px 16px;
+	text-align: left;
+	font-weight: 700;
+	color: var(--green);
+	border-bottom: 2px solid var(--line);
+}
+
+.schedule-table td {
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--line);
+}
+
+.schedule-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.schedule-table tbody tr.finished td {
+	background: #f5f5f5;
+	color: var(--muted);
+}
+
+.schedule-table .time {
+	font-weight: 700;
+	color: var(--green);
+	width: 80px;
+}
+
+.schedule-table .vs {
+	color: var(--muted);
+	margin: 0 8px;
+}
+
+.schedule-table .result {
+	font-weight: 700;
+	color: var(--text);
+}
+
+.schedule-table .score {
+	font-weight: 700;
+	color: var(--text);
+}
+
+@media (max-width: 640px) {
+	.schedule-table {
+		font-size: 0.9rem;
+	}
+
+	.schedule-table th,
+	.schedule-table td {
+		padding: 8px 12px;
+	}
+
+	.schedule-table .time {
+		width: 60px;
+	}
+
+	.match-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.container {
+		padding: 0 16px;
+	}
+
+	.header-inner {
+		padding: 20px 0;
+	}
+
+	.logo {
+		height: 40px;
+	}
+
+	.btn.official {
+		white-space: nowrap;
+	}
+}
+
+@media (max-width: 400px) {
+	.container {
+		padding: 0 12px;
+	}
+
+	.btn {
+		padding: 8px 14px;
+		font-size: 0.85rem;
+	}
+}

@@ -1,0 +1,104 @@
+{
+    "date": "2024/02/22",
+    "update": "15:00",
+    "Soccer": {
+        "schedule": [
+            {
+                "time": "14:00",
+                "team1": "Aチーム",
+                "team2": "Bチーム",
+                "finish": true,
+                "score1": 2,
+                "score2": 1
+            },
+            {
+                "time": "15:00",
+                "team1": "Cチーム",
+                "team2": "Dチーム",
+                "finish": false,
+                "score1": null,
+                "score2": null
+            },
+            {
+                "time": "16:00",
+                "team1": "Eチーム",
+                "team2": "Fチーム",
+                "finish": false,
+                "score1": null,
+                "score2": null
+            },
+            {
+                "time": "17:00",
+                "team1": "Gチーム",
+                "team2": "Hチーム",
+                "finish": false,
+                "score1": null,
+                "score2": null
+            }
+        ]
+    },
+    "rescue-maze": {
+        "schedule": [
+            {
+                "time": "14:30",
+                "team": "Iチーム",
+                "run": 1,
+                "finish": true,
+                "score": 100
+            },
+            {
+                "time": "15:00",
+                "team": "Kチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            },
+            {
+                "time": "15:30",
+                "team": "Mチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            },
+            {
+                "time": "16:00",
+                "team": "Oチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            }
+        ]
+    },
+    "rescue-line": {
+        "schedule": [
+            {
+                "time": "14:45",
+                "team": "Jチーム",
+                "run": 1,
+                "finish": true,
+                "score": 80
+            },
+            {
+                "time": "15:15",
+                "team": "Lチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            },
+            {
+                "time": "15:45",
+                "team": "Nチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            },
+            {
+                "time": "16:15",
+                "team": "Pチーム",
+                "run": 1,
+                "finish": false,
+                "score": null
+            }
+        ]
+    }
+}

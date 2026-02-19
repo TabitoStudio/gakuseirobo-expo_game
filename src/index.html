@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="学習ロボ展示会の紹介ページ" />
+		<title>学習ロボ展示会</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container header-inner">
+				<img class="logo" src="./img/logo.png" alt="学習ロボ展示会ロゴ" />
+				<a class="btn official" href="https://robot.exposition.tokyo/index.html" target="_blank" rel="noopener noreferrer">
+					公式ページへ
+				</a>
+			</div>
+		</header>
+
+		<div class="date-box">
+			<div class="container">
+				<p class="date-text" id="event-date">読み込み中...</p>
+			</div>
+		</div>
+
+		<nav class="menu-box">
+			<div class="container">
+				<ul class="menu">
+					<li><a href="#top" class="menu-item active" onclick="showPage('top'); return false;">TOP</a></li>
+					<li><a href="#schedule" class="menu-item" onclick="showPage('schedule'); return false;">試合一覧</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<section id="page-top" class="page-section page-active">
+			<section class="match-info-section">
+				<div class="container">
+					<div id="match-info-container" class="match-info-container">
+						<div class="match-loading">試合情報を読み込み中...</div>
+					</div>
+				</div>
+			</section>
+
+			<main>
+				<section class="section" id="about">
+					<div class="container">
+						<h2>本アプリについて</h2>
+						<p>
+							本アプリは、学生ロボットEXPOの試合情報をリアルタイムで提供するものです。現在行われている試合や、以降の試合について調べるのにご活用ください。
+						</p>
+					</div>
+				</section>
+			</main>
+		</section>
+
+		<section id="page-schedule" class="page-section">
+			<div class="schedule-container">
+				<div class="container">
+					<h2>試合一覧</h2>
+					<div id="schedule-content" class="schedule-content">
+						<div class="match-loading">試合情報を読み込み中...</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="site-footer">
+			<div class="container">
+				<p class="muted">&copy; 2026 学生ロボットEXPO</p>
+			</div>
+		</footer>
+
+		<script>
+			const sportNames = {
+				'Soccer': 'サッカー',
+				'rescue-maze': 'レスキューメイズ',
+				'rescue-line': 'レスキューライン'
+			};
+
+			let globalData = null;
+
+			function showPage(page) {
+				document.querySelectorAll('.page-section').forEach(el => {
+					el.classList.remove('page-active');
+				});
+				document.getElementById(`page-${page}`).classList.add('page-active');
+
+				document.querySelectorAll('.menu-item').forEach(el => {
+					el.classList.remove('active');
+				});
+				event.target.classList.add('active');
+
+				if (page === 'schedule' && globalData) {
+					displaySchedulePage(globalData);
+				}
+			}
+
+			fetch('./data.json')
+				.then(response => response.json())
+				.then(data => {
+					globalData = data;
+					const dateElement = document.getElementById('event-date');
+					dateElement.textContent = `日付: ${data.date} | 更新: ${data.update}`;
+					
+					displayAllMatchInfo(data);
+				})
+				.catch(error => {
+					console.error('データの読み込みに失敗しました:', error);
+					document.getElementById('event-date').textContent = '日付情報を読み込めませんでした';
+				});
+
+			function displayAllMatchInfo(data) {
+				const updateTime = data.update;
+				const container = document.getElementById('match-info-container');
+				let html = '';
+
+				Object.keys(data).forEach(sport => {
+					if (sport === 'date' || sport === 'update') return;
+					
+					const schedule = data[sport].schedule;
+					const sportName = sportNames[sport] || sport;
+					
+					const nowMatches = schedule.filter(match => {
+						return match.time <= updateTime && !match.finish;
+					});
+					const nowMatch = nowMatches[nowMatches.length - 1];
+					
+					const nextMatch = schedule.find(match => {
+						return match.time > updateTime && !match.finish;
+					});
+
+					if (nowMatch || nextMatch) {
+						html += `<div class="sport-section">
+							<h3 class="sport-title">${sportName}</h3>
+							<div class="match-grid">`;
+						
+						if (nowMatch) {
+							html += generateMatchCard('Now', nowMatch, sport);
+						}
+						
+						if (nextMatch) {
+							html += generateMatchCard('Next', nextMatch, sport);
+						}
+						
+						html += `</div></div>`;
+					}
+				});
+
+				if (html === '') {
+					container.innerHTML = '<div class="no-match">表示する試合情報がありません</div>';
+				} else {
+					container.innerHTML = html;
+				}
+			}
+
+			function displaySchedulePage(data) {
+				const container = document.getElementById('schedule-content');
+				let html = '';
+
+				Object.keys(data).forEach(sport => {
+					if (sport === 'date' || sport === 'update') return;
+					
+					const schedule = data[sport].schedule;
+					const sportName = sportNames[sport] || sport;
+					
+					const sortedSchedule = [...schedule].sort((a, b) => {
+						return a.time.localeCompare(b.time);
+					});
+
+					html += `<div class="sport-schedule-section">
+						<h3 class="sport-schedule-title">${sportName}</h3>
+						<table class="schedule-table">
+							<thead>
+								<tr>
+									<th>時間</th>
+									<th>試合情報</th>
+									<th>状態</th>
+								</tr>
+							</thead>
+							<tbody>`;
+
+					sortedSchedule.forEach(match => {
+						let matchInfo = '';
+						let status = '';
+
+						if (sport === 'Soccer') {
+							matchInfo = `${match.team1} <span class="vs">vs</span> ${match.team2}`;
+							if (match.finish && match.score1 !== null && match.score2 !== null) {
+								status = `<span class="result">${match.score1} - ${match.score2}</span>`;
+							} else {
+								status = match.finish ? '終了' : '予定';
+							}
+						} else {
+							matchInfo = `${match.team} (Run ${match.run})`;
+							if (match.finish && match.score !== null) {
+								status = `<span class="score">${match.score}</span>`;
+							} else {
+								status = match.finish ? '終了' : '予定';
+							}
+						}
+
+						html += `
+							<tr${match.finish ? ' class="finished"' : ''}>
+								<td class="time">${match.time}</td>
+								<td>${matchInfo}</td>
+								<td>${status}</td>
+							</tr>
+						`;
+					});
+
+					html += `</tbody>
+						</table>
+					</div>`;
+				});
+
+				container.innerHTML = html;
+			}
+
+			function generateMatchCard(label, match, sport) {
+				const isNow = label === 'Now';
+				const cardClass = isNow ? 'match-card match-card-now' : 'match-card';
+				const labelClass = isNow ? 'match-label match-label-now' : 'match-label';
+				let matchHtml = `
+					<div class="${cardClass}">
+						<h3 class="match-title">
+							<span class="${labelClass}">${label}</span>
+						</h3>
+						<div class="match-content">
+							<div class="match-time">${match.time}</div>
+				`;
+
+				if (sport === 'Soccer') {
+					matchHtml += `
+						<div class="match-teams">
+							<div class="team">${match.team1}</div>
+							<div class="team-vs">vs</div>
+							<div class="team">${match.team2}</div>
+						</div>
+					`;
+				} else {
+					matchHtml += `
+						<div class="match-teams">
+							<div class="team single-team">${match.team}</div>
+						</div>
+						<div class="match-run">Run ${match.run}</div>
+					`;
+				}
+
+				matchHtml += `
+						</div>
+					</div>
+				`;
+				
+				return matchHtml;
+			}
+		</script>
+	</body>
+</html>
