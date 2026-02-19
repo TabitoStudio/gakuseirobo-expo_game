@@ -1,104 +1,143 @@
 {
-    "date": "2024/02/22",
-    "update": "15:00",
-    "Soccer": {
-        "schedule": [
-            {
-                "time": "14:00",
-                "team1": "Aチーム",
-                "team2": "Bチーム",
-                "finish": true,
-                "score1": 2,
-                "score2": 1
-            },
-            {
-                "time": "15:00",
-                "team1": "Cチーム",
-                "team2": "Dチーム",
-                "finish": false,
-                "score1": null,
-                "score2": null
-            },
-            {
-                "time": "16:00",
-                "team1": "Eチーム",
-                "team2": "Fチーム",
-                "finish": false,
-                "score1": null,
-                "score2": null
-            },
-            {
-                "time": "17:00",
-                "team1": "Gチーム",
-                "team2": "Hチーム",
-                "finish": false,
-                "score1": null,
-                "score2": null
-            }
-        ]
+  "lastUpdated": "2026-02-19T10:25:20.956Z",
+  "matches": [
+    {
+      "id": "開始時刻",
+      "player1": "チーム1",
+      "player2": "チーム2",
+      "status": "finish"
     },
-    "rescue-maze": {
-        "schedule": [
-            {
-                "time": "14:30",
-                "team": "Iチーム",
-                "run": 1,
-                "finish": true,
-                "score": 100
-            },
-            {
-                "time": "15:00",
-                "team": "Kチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            },
-            {
-                "time": "15:30",
-                "team": "Mチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            },
-            {
-                "time": "16:00",
-                "team": "Oチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            }
-        ]
+    {
+      "id": "1899-12-30T04:30:00.000Z",
+      "player1": "test1",
+      "player2": "test2",
+      "status": false
     },
-    "rescue-line": {
-        "schedule": [
-            {
-                "time": "14:45",
-                "team": "Jチーム",
-                "run": 1,
-                "finish": true,
-                "score": 80
-            },
-            {
-                "time": "15:15",
-                "team": "Lチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            },
-            {
-                "time": "15:45",
-                "team": "Nチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            },
-            {
-                "time": "16:15",
-                "team": "Pチーム",
-                "run": 1,
-                "finish": false,
-                "score": null
-            }
-        ]
+    {
+      "id": "1899-12-30T04:55:00.000Z",
+      "player1": "test3",
+      "player2": "test4",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T05:20:00.000Z",
+      "player1": "test5",
+      "player2": "test6",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T05:45:00.000Z",
+      "player1": "test7",
+      "player2": "test8",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T06:25:00.000Z",
+      "player1": "test1",
+      "player2": "test3",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T06:50:00.000Z",
+      "player1": "test2",
+      "player2": "test5",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T07:15:00.000Z",
+      "player1": "test4",
+      "player2": "test7",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T07:40:00.000Z",
+      "player1": "test6",
+      "player2": "test8",
+      "status": false
+    },
+    {
+      "id": "Soccer",
+      "player1": "2026-02-22T15:00:00.000Z",
+      "player2": "",
+      "status": ""
+    },
+    {
+      "id": "開始時刻",
+      "player1": "チーム1",
+      "player2": "チーム2",
+      "status": "finish"
+    },
+    {
+      "id": "1899-12-30T04:00:00.000Z",
+      "player1": "test1",
+      "player2": "test4",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T04:25:00.000Z",
+      "player1": "test2",
+      "player2": "test3",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T04:50:00.000Z",
+      "player1": "test5",
+      "player2": "test8",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T05:15:00.000Z",
+      "player1": "test6",
+      "player2": "test7",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T05:40:00.000Z",
+      "player1": "test1",
+      "player2": "test5",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T06:05:00.000Z",
+      "player1": "test2",
+      "player2": "test6",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T06:30:00.000Z",
+      "player1": "test3",
+      "player2": "test7",
+      "status": false
+    },
+    {
+      "id": "1899-12-30T06:55:00.000Z",
+      "player1": "test4",
+      "player2": "test8",
+      "status": false
+    },
+    {
+      "id": "",
+      "player1": "",
+      "player2": "",
+      "status": ""
+    },
+    {
+      "id": "",
+      "player1": "",
+      "player2": "",
+      "status": ""
+    },
+    {
+      "id": "",
+      "player1": "",
+      "player2": "",
+      "status": ""
+    },
+    {
+      "id": "",
+      "player1": "",
+      "player2": "",
+      "status": ""
     }
+  ]
 }
