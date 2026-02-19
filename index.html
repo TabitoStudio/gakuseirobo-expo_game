@@ -28,7 +28,7 @@
 			<div class="container">
 				<ul class="menu">
 					<li><a href="#top" class="menu-item active" onclick="showPage('top'); return false;">TOP</a></li>
-					<li><a href="#schedule" class="menu-item" onclick="showPage('schedule'); return false;">試合一覧</a></li>
+					<li><a href="#schedule" class="menu-item" id="schedule-menu-item" onclick="showPage('schedule'); return false;">試合一覧</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -56,6 +56,7 @@
 		</section>
 
 		<section id="page-schedule" class="page-section">
+			<div id="schedule-state-message-container"></div>
 			<div class="schedule-container">
 				<div class="container">
 					<h2>試合一覧</h2>
@@ -82,6 +83,13 @@
 			let globalData = null;
 
 			function showPage(page) {
+				if (!globalData) return;
+				
+				// begin/menteの時は試合一覧ページに遷移させない
+				if (page === 'schedule' && (globalData.state === 'begin' || globalData.state === 'mente')) {
+					return;
+				}
+				
 				document.querySelectorAll('.page-section').forEach(el => {
 					el.classList.remove('page-active');
 				});
@@ -115,19 +123,23 @@
 				const stateContainer = document.getElementById('state-message-container');
 				const matchInfoSection = document.querySelector('.match-info-section');
 				const aboutSection = document.getElementById('about');
+				const scheduleMenuItem = document.getElementById('schedule-menu-item');
 				
 				if (data.state === 'begin') {
 					stateContainer.innerHTML = '<div class="state-message state-begin"><div class="container"><p>イベント開始までしばらくお待ちください</p></div></div>';
 					matchInfoSection.style.display = 'none';
 					aboutSection.style.display = 'none';
+					scheduleMenuItem.classList.add('disabled');
 				} else if (data.state === 'mente') {
 					stateContainer.innerHTML = '<div class="state-message state-mente"><div class="container"><p>現在緊急メンテナンス中です</p></div></div>';
 					matchInfoSection.style.display = 'none';
 					aboutSection.style.display = 'none';
+					scheduleMenuItem.classList.add('disabled');
 				} else {
 					stateContainer.innerHTML = '';
 					matchInfoSection.style.display = 'block';
 					aboutSection.style.display = 'block';
+					scheduleMenuItem.classList.remove('disabled');
 					displayAllMatchInfo(data);
 				}
 			}
