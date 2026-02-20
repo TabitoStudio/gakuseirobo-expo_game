@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生ロボットEXPO - 会場掲示</title>
+    <style>
+        /* スタイルは変更なし（完成されているため維持） */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans JP", "Hiragino Sans", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1aa35d 0%, #14814a 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            margin-bottom: 0.8rem;
+            padding: 0.6rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-left { display: flex; align-items: baseline; gap: 1.2rem; }
+        .logo-title { font-size: 1.5rem; font-weight: 900; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); }
+        .current-screen-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #ffffff;
+            padding: 0.3rem 0.9rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+        .date-info { font-size: 1rem; font-weight: 600; opacity: 0.9; }
+        .content-area { flex: 1; position: relative; overflow: hidden; }
+        .screen {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0;
+            display: none;
+            transition: opacity 0.4s ease;
+        }
+        .screen.active { opacity: 1; display: block; }
+        .schedule-item, .match-card { opacity: 0; transform: translateY(30px); }
+        .animate { animation: slideInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+        @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+        .next-matches { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        .match-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1f2937; padding: 1.5rem; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .sport-label { font-size: 1.8rem; font-weight: 900; color: #1aa35d; text-align: center; }
+        .next-label { 
+            display: block; width: fit-content; margin: 0.3rem auto 0.8rem; 
+            background: #1aa35d; color: #fff; padding: 0.2rem 1.2rem; border-radius: 50px; font-size: 1rem; 
+        }
+        .match-time { font-size: 1.6rem; font-weight: 900; color: #1aa35d; text-align: center; }
+        .match-teams { font-size: 1.4rem; font-weight: 700; text-align: center; margin-top: 0.5rem; }
+        .prezen-title-next { 
+            font-size: 1.1rem; color: #4b5563; text-align: center; margin-top: 0.8rem; 
+            font-weight: 600; border-top: 2px solid #f3f4f6; padding-top: 0.8rem;
+        }
+        .schedule-items { display: flex; flex-direction: column; gap: 0.4rem; }
+        .schedule-item {
+            display: flex; align-items: center; padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 40px; border-left: 5px solid #1aa35d;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .schedule-item-time { font-size: 1.3rem; font-weight: 900; color: #1aa35d; min-width: 80px; }
+        .schedule-item-content { flex: 1; font-size: 1.3rem; font-weight: 700; color: #1f2937; margin: 0 1rem; }
+        .schedule-item-status { font-size: 0.9rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 20px; white-space: nowrap; }
+        .status-finished { background: #d1d5db; color: #6b7280; }
+        .status-ongoing { background: #fef3c7; color: #92400e; }
+        .status-upcoming { background: #dbeafe; color: #1e40af; }
+        .no-match { text-align: center; font-size: 1.6rem; padding: 4rem; background: rgba(255,255,255,0.1); border-radius: 20px; width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <div class="logo-title">学生ロボットEXPO</div>
+                <div class="current-screen-title" id="current-screen-title">--</div>
+            </div>
+            <div class="date-info" id="date-info">データ読込中...</div>
+        </div>
+        <div class="content-area">
+            <div class="screen" id="screen-next"><div class="next-matches" id="next-matches-container"></div></div>
+            <div class="screen" id="screen-soccer"><div class="schedule-items" id="soccer-schedule"></div></div>
+            <div class="screen" id="screen-rescue-line"><div class="schedule-items" id="rescue-line-schedule"></div></div>
+            <div class="screen" id="screen-rescue-maze"><div class="schedule-items" id="rescue-maze-schedule"></div></div>
+            <div class="screen" id="screen-prezen"><div class="schedule-items" id="prezen-schedule"></div></div>
+        </div>
+    </div>
+
+    <script>
+        const CONFIG = {
+            duration: 8000,
+            dataUrl: './data.json',
+            sportKeys: ['soccer', 'rescue-line', 'rescue-maze', 'prezen'],
+            sportDisplayNames: { 'soccer': 'サッカー', 'rescue-maze': 'レスキューメイズ', 'rescue-line': 'レスキューライン', 'prezen': 'プレゼン' },
+            screenTitles: { 'screen-next': '次の試合・発表', 'screen-soccer': 'サッカー 試合一覧', 'screen-rescue-line': 'レスキューライン 試合一覧', 'screen-rescue-maze': 'レスキューメイズ 試合一覧', 'screen-prezen': '発表一覧' },
+            screens: ['screen-next', 'screen-soccer', 'screen-rescue-line', 'screen-rescue-maze', 'screen-prezen']
+        };
+
+        let state = { step: 0, data: null };
+
+        async function fetchLatestData() {
+            try {
+                const response = await fetch(CONFIG.dataUrl);
+                const rawData = await response.json();
+                state.data = normalizeData(rawData);
+                
+                document.getElementById('date-info').textContent = `日付: ${state.data.date || '--'} | 更新: ${state.data.update || '--:--'}`;
+                renderAllScreens();
+                
+                const activeScreen = document.querySelector('.screen.active');
+                if (activeScreen && activeScreen.id !== 'screen-next') {
+                    const targetId = activeScreen.id;
+                    setTimeout(() => {
+                        const items = activeScreen.querySelectorAll('.schedule-item, .match-card');
+                        items.forEach((el, i) => {
+                            el.classList.remove('animate');
+                            el.style.animation = 'none';
+                            el.style.animationDelay = `${i * 100}ms`;
+                        });
+                        setTimeout(() => {
+                            items.forEach((el) => {
+                                el.style.animation = '';
+                                el.classList.add('animate');
+                            });
+                        }, 10);
+                    }, 10);
+                }
+            } catch (e) {
+                document.getElementById('date-info').textContent = "エラー: data.jsonが見つかりません";
+            }
+        }
+
+        function normalizeData(data) {
+            const normalized = {};
+            Object.keys(data).forEach(key => {
+                normalized[key.toLowerCase()] = data[key];
+            });
+            return normalized;
+        }
+
+        function renderAllScreens() {
+            if (!state.data) return;
+            const now = state.data.update || "00:00";
+
+            renderNextMatchesScreen();
+
+            CONFIG.sportKeys.forEach(key => {
+                const container = document.getElementById(`${key}-schedule`);
+                if (!container) return;
+                
+                // 終了していない試合のみを取得
+                const items = (state.data[key]?.schedule || []).filter(m => !m.finish);
+                container.innerHTML = items.length ? items.map(m => createItemHtml(key, m)).join('') : '<div class="no-match">試合予定はありません</div>';
+            });
+        }
+
+        function renderNextMatchesScreen() {
+            if (!state.data) return;
+            const now = state.data.update || "00:00";
+
+            let nextHtml = '';
+            CONFIG.sportKeys.forEach(key => {
+                const sportData = state.data[key];
+                if (sportData && sportData.schedule) {
+                    const next = sportData.schedule.find(m => m.time > now && !m.finish);
+                    if (next) {
+                        const teamInfo = key === 'soccer' ? `${next.team1} vs ${next.team2}` : (key === 'prezen' ? next.name : `${next.team} (Run ${next.run})`);
+                        const prezenTitle = (key === 'prezen' && next.title) ? `<div class="prezen-title-next">${next.title}</div>` : '';
+                        nextHtml += `<div class="match-card">
+                            <div class="sport-label">${CONFIG.sportDisplayNames[key]}</div>
+                            <div class="next-label">NEXT</div>
+                            <div class="match-time">${next.time}</div>
+                            <div class="match-teams">${teamInfo}</div>
+                            ${prezenTitle}
+                        </div>`;
+                    }
+                }
+            });
+            document.getElementById('next-matches-container').innerHTML = nextHtml || '<div class="no-match">本日の予定はすべて終了しました</div>';
+        }
+
+        function createItemHtml(key, m) {
+            const isOngoing = m.time <= state.data.update && !m.finish;
+            const statusStr = m.finish ? '終了' : (isOngoing ? '進行中' : '予定');
+            const statusCls = m.finish ? 'status-finished' : (isOngoing ? 'status-ongoing' : 'status-upcoming');
+            
+            let info = "";
+            if (key === 'soccer') {
+                info = `${m.team1} vs ${m.team2}`;
+                if (m.finish && m.score1 !== undefined) info += ` (${m.score1}-${m.score2})`;
+            } else if (key === 'prezen') {
+                info = `${m.name} / ${m.title}`;
+            } else {
+                info = `${m.team} (Run ${m.run})`;
+            }
+            
+            return `<div class="schedule-item">
+                <div class="schedule-item-time">${m.time}</div>
+                <div class="schedule-item-content">${info}</div>
+                <div class="schedule-item-status ${statusCls}">${statusStr}</div>
+            </div>`;
+        }
+
+        function updateDisplay() {
+            const screenCount = CONFIG.screens.length;
+            const screenIndex = state.step % screenCount;
+            const targetId = CONFIG.screens[screenIndex];
+
+            CONFIG.screens.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.remove('active');
+                el.style.display = 'none';
+                el.querySelectorAll('.animate').forEach(child => child.classList.remove('animate'));
+            });
+
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+            targetEl.style.display = 'block';
+            
+            setTimeout(() => {
+                targetEl.classList.add('active');
+                document.getElementById('current-screen-title').textContent = CONFIG.screenTitles[targetId];
+                
+                const items = targetEl.querySelectorAll('.schedule-item, .match-card');
+                items.forEach((el, i) => {
+                    el.style.animationDelay = `${i * 100}ms`;
+                    void el.offsetWidth;
+                    el.classList.add('animate');
+                });
+                
+                if (targetId === 'screen-next') {
+                    fetchLatestData().then(() => {
+                        renderNextMatchesScreen();
+                        const nextItems = targetEl.querySelectorAll('.match-card');
+                        nextItems.forEach((el, i) => {
+                            el.classList.remove('animate');
+                            el.style.animation = 'none';
+                            el.style.animationDelay = `${i * 100}ms`;
+                        });
+                        setTimeout(() => {
+                            nextItems.forEach((el) => {
+                                el.style.animation = '';
+                                el.classList.add('animate');
+                            });
+                        }, 10);
+                    });
+                }
+            }, 10);
+        }
+
+        function tick() {
+            state.step++;
+            updateDisplay();
+        }
+
+        async function init() {
+            await fetchLatestData();
+            updateDisplay();
+            setInterval(tick, CONFIG.duration);
+        }
+
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
