@@ -1,7 +1,7 @@
 {
   "state": "open",
   "date": "2026/02/23",
-  "update": "13:37",
+  "update": "23:03",
   "Soccer": {
     "schedule": [
       {
@@ -199,41 +199,6 @@
         "time": "15:55",
         "team": "test5",
         "run": 2,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "19:15",
-        "team": "test1",
-        "run": 3,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "19:30",
-        "team": "test2",
-        "run": 3,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "19:50",
-        "team": "test3",
-        "run": 3,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "20:05",
-        "team": "test4",
-        "run": 3,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "20:30",
-        "team": "test5",
-        "run": 3,
         "finish": false,
         "score": null
       }
