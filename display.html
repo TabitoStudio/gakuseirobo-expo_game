@@ -276,7 +276,9 @@
 
         function tick() {
             state.step++;
-            updateDisplay();
+            fetchLatestData().then(() => {
+                updateDisplay();
+            });
         }
 
         async function init() {
