@@ -1,69 +1,69 @@
 {
   "state": "open",
   "date": "2026/02/23",
-  "update": "17:47",
+  "update": "18:36",
   "soccer": {
     "schedule": [
       {
         "time": "13:00",
-        "team1": "test1",
-        "team2": "test4",
-        "finish": false,
-        "score1": null,
-        "score2": null
+        "team1": "Gcraud Shuffle",
+        "team2": "ICT_Laboratory",
+        "finish": true,
+        "score1": 5,
+        "score2": 6
       },
       {
         "time": "13:25",
-        "team1": "test2",
-        "team2": "test3",
+        "team1": "AIR",
+        "team2": "つちのこキッカーズ",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "13:50",
-        "team1": "test5",
-        "team2": "test8",
+        "team1": "Oi_DENGIKEN",
+        "team2": "URAWA BEOLSAE",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "14:15",
-        "team1": "test6",
-        "team2": "test7",
+        "team1": "VEGA",
+        "team2": "Thrcot",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "14:40",
-        "team1": "test1",
-        "team2": "test5",
+        "team1": "Gcraud Shuffle",
+        "team2": "URAWA BEOLSAE",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "15:05",
-        "team1": "test2",
-        "team2": "test6",
+        "team1": "AIR",
+        "team2": "Thrcot",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "15:30",
-        "team1": "test3",
-        "team2": "test7",
+        "team1": "Oi_DENGIKEN",
+        "team2": "ICT_Laboratory",
         "finish": false,
         "score1": null,
         "score2": null
       },
       {
         "time": "15:55",
-        "team1": "test4",
-        "team2": "test8",
+        "team1": "VEGA",
+        "team2": "つちのこキッカーズ",
         "finish": false,
         "score1": null,
         "score2": null
@@ -76,8 +76,8 @@
         "time": "13:25",
         "team": "test1",
         "run": 1,
-        "finish": false,
-        "score": null
+        "finish": true,
+        "score": 200
       },
       {
         "time": "13:40",
@@ -136,8 +136,8 @@
         "time": "13:15",
         "team": "BoeingDGK",
         "run": 1,
-        "finish": false,
-        "score": null
+        "finish": true,
+        "score": 100
       },
       {
         "time": "13:30",
@@ -196,7 +196,7 @@
         "time": "12:30",
         "ftime": "12:40",
         "name": "藤原 智貴",
-        "finish": false,
+        "finish": true,
         "title": "ともだちのつくりかた",
         "detail": ""
       },
@@ -204,7 +204,7 @@
         "time": "12:45",
         "ftime": "12:50",
         "name": "渡邉 幸大朗",
-        "finish": false,
+        "finish": true,
         "title": "ロボカッパーから自称アーティストの道へ",
         "detail": "現在制作しているアート作品についてと自己紹介をしようと考えています。"
       },
