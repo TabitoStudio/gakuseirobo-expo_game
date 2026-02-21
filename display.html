@@ -122,7 +122,8 @@
 
         async function fetchLatestData() {
             try {
-                const response = await fetch(CONFIG.dataUrl);
+            const cacheBustedUrl = `${CONFIG.dataUrl}?t=${Date.now()}`;
+            const response = await fetch(cacheBustedUrl, { cache: 'no-store' });
                 const rawData = await response.json();
                 state.data = normalizeData(rawData);
                 
@@ -276,9 +277,15 @@
 
         function tick() {
             state.step++;
-            fetchLatestData().then(() => {
-                updateDisplay();
-            });
+            const screenCount = CONFIG.screens.length;
+            const isCycleEnd = state.step % screenCount === 0;
+            if (isCycleEnd) {
+                fetchLatestData().then(() => {
+                    updateDisplay();
+                });
+                return;
+            }
+            updateDisplay();
         }
 
         async function init() {
