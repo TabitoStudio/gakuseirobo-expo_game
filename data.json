@@ -1,7 +1,7 @@
 {
   "state": "open",
   "date": "2026/02/23",
-  "update": "10:04",
+  "update": "10:45",
   "soccer": {
     "schedule": [
       {
@@ -207,9 +207,9 @@
   "prezen": {
     "schedule": [
       {
-        "time": "14:00",
-        "ftime": "14:20",
-        "name": "ftomo",
+        "time": "12:30",
+        "ftime": "12:40",
+        "name": "藤原 智貴",
         "finish": false,
         "title": "関東ブロック大会で負けた",
         "detail": "年下にボコボコにされた話をします"
