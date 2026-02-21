@@ -1,7 +1,7 @@
 {
   "state": "open",
   "date": "2026/02/23",
-  "update": "10:46",
+  "update": "17:47",
   "soccer": {
     "schedule": [
       {
@@ -134,70 +134,56 @@
     "schedule": [
       {
         "time": "13:15",
-        "team": "test1",
+        "team": "BoeingDGK",
         "run": 1,
         "finish": false,
         "score": null
       },
       {
         "time": "13:30",
-        "team": "test2",
+        "team": "おしゃんてぃ",
         "run": 1,
         "finish": false,
         "score": null
       },
       {
         "time": "13:50",
-        "team": "test3",
+        "team": "けいんず",
         "run": 1,
         "finish": false,
         "score": null
       },
       {
         "time": "14:05",
-        "team": "test4",
-        "run": 1,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "14:30",
-        "team": "test5",
+        "team": "A.Z.K.",
         "run": 1,
         "finish": false,
         "score": null
       },
       {
         "time": "14:45",
-        "team": "test1",
+        "team": "BoeingDGK",
         "run": 2,
         "finish": false,
         "score": null
       },
       {
         "time": "15:05",
-        "team": "test2",
+        "team": "おしゃんてぃ",
         "run": 2,
         "finish": false,
         "score": null
       },
       {
         "time": "15:20",
-        "team": "test3",
+        "team": "けいんず",
         "run": 2,
         "finish": false,
         "score": null
       },
       {
         "time": "15:35",
-        "team": "test4",
-        "run": 2,
-        "finish": false,
-        "score": null
-      },
-      {
-        "time": "15:55",
-        "team": "test5",
+        "team": "A.Z.K.",
         "run": 2,
         "finish": false,
         "score": null
@@ -211,8 +197,8 @@
         "ftime": "12:40",
         "name": "藤原 智貴",
         "finish": false,
-        "title": "関東ブロック大会で負けた",
-        "detail": "年下にボコボコにされた話をします"
+        "title": "ともだちのつくりかた",
+        "detail": ""
       },
       {
         "time": "12:45",
@@ -251,60 +237,60 @@
         "ftime": "14:00",
         "name": "Ri-one",
         "finish": false,
-        "title": "RI-oneの紹介など",
+        "title": "Ri-oneの紹介など",
         "detail": ""
       },
       {
-        "time": "14:10",
-        "ftime": "14:20",
+        "time": "14:25",
+        "ftime": "14:35",
         "name": "高倉 圭大 (nop)",
         "finish": false,
         "title": "PID制御の先",
         "detail": "PID制御、物事の制御について、知識を振り返りつつ、制御工学の中で個人的に好きな分野について話したいと思います。"
       },
       {
-        "time": "14:25",
-        "ftime": "14:30",
+        "time": "14:40",
+        "ftime": "14:45",
         "name": "多胡 侑哉",
         "finish": false,
         "title": "ロボティクスとRust",
         "detail": "Rustでロボットのコードを書いたときの良い点や悪い点をあげつらいます"
       },
       {
-        "time": "14:35",
-        "ftime": "14:55",
+        "time": "14:50",
+        "ftime": "15:10",
         "name": "中野 葉",
         "finish": false,
         "title": "画像処理",
         "detail": "世界大会でチームTachyonが使用した画像処理プログラムについて解説します"
       },
       {
-        "time": "15:00",
-        "ftime": "15:10",
+        "time": "15:15",
+        "ftime": "15:25",
         "name": "中野 湧",
         "finish": false,
         "title": "学生ロボットEXPO用のWebアプリを作った話",
         "detail": "試合情報、発表についての情報を提供するアプリの仕組みを紹介します"
       },
       {
-        "time": "15:15",
-        "ftime": "15:25",
+        "time": "15:30",
+        "ftime": "15:40",
         "name": "飯田 智彦",
         "finish": false,
         "title": "メインPCをデュアルブート化した話",
         "detail": "Windowsユーザー視点でUbuntuのメリットやデメリット、デュアルブート化の手順を話します。"
       },
       {
-        "time": "15:30",
-        "ftime": "15:40",
+        "time": "15:45",
+        "ftime": "15:55",
         "name": "辻 琉貴",
         "finish": false,
         "title": "BLDCモジュールを作った話",
         "detail": "以前作ったBLDCモーターのモジュールについて話します"
       },
       {
-        "time": "15:45",
-        "ftime": "16:00",
+        "time": "16:00",
+        "ftime": "16:15",
         "name": "高橋 浩賢",
         "finish": false,
         "title": "基板設計の面白さ",
