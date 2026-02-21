@@ -1,7 +1,7 @@
 {
   "state": "open",
   "date": "2026/02/23",
-  "update": "10:45",
+  "update": "10:46",
   "soccer": {
     "schedule": [
       {
@@ -213,6 +213,102 @@
         "finish": false,
         "title": "関東ブロック大会で負けた",
         "detail": "年下にボコボコにされた話をします"
+      },
+      {
+        "time": "12:45",
+        "ftime": "12:50",
+        "name": "渡邉 幸大朗",
+        "finish": false,
+        "title": "ロボカッパーから自称アーティストの道へ",
+        "detail": "現在制作しているアート作品についてと自己紹介をしようと考えています。"
+      },
+      {
+        "time": "12:55",
+        "ftime": "13:15",
+        "name": "宮本 映児",
+        "finish": false,
+        "title": "コミュニケーションロボットについて",
+        "detail": "開発しているコミュニケーションロボットについての話をします。"
+      },
+      {
+        "time": "13:20",
+        "ftime": "13:35",
+        "name": "松戸ロボティクス",
+        "finish": false,
+        "title": "松戸ロボティクスの紹介",
+        "detail": "松戸ロボティクスのロボット•活動紹介　来年度開催する技術イベントMatsudo Tech Labの紹介"
+      },
+      {
+        "time": "13:40",
+        "ftime": "13:45",
+        "name": "宮里 孝希",
+        "finish": false,
+        "title": "",
+        "detail": ""
+      },
+      {
+        "time": "13:50",
+        "ftime": "14:00",
+        "name": "Ri-one",
+        "finish": false,
+        "title": "RI-oneの紹介など",
+        "detail": ""
+      },
+      {
+        "time": "14:10",
+        "ftime": "14:20",
+        "name": "高倉 圭大 (nop)",
+        "finish": false,
+        "title": "PID制御の先",
+        "detail": "PID制御、物事の制御について、知識を振り返りつつ、制御工学の中で個人的に好きな分野について話したいと思います。"
+      },
+      {
+        "time": "14:25",
+        "ftime": "14:30",
+        "name": "多胡 侑哉",
+        "finish": false,
+        "title": "ロボティクスとRust",
+        "detail": "Rustでロボットのコードを書いたときの良い点や悪い点をあげつらいます"
+      },
+      {
+        "time": "14:35",
+        "ftime": "14:55",
+        "name": "中野 葉",
+        "finish": false,
+        "title": "画像処理",
+        "detail": "世界大会でチームTachyonが使用した画像処理プログラムについて解説します"
+      },
+      {
+        "time": "15:00",
+        "ftime": "15:10",
+        "name": "中野 湧",
+        "finish": false,
+        "title": "学生ロボットEXPO用のWebアプリを作った話",
+        "detail": "試合情報、発表についての情報を提供するアプリの仕組みを紹介します"
+      },
+      {
+        "time": "15:15",
+        "ftime": "15:25",
+        "name": "飯田 智彦",
+        "finish": false,
+        "title": "メインPCをデュアルブート化した話",
+        "detail": "Windowsユーザー視点でUbuntuのメリットやデメリット、デュアルブート化の手順を話します。"
+      },
+      {
+        "time": "15:30",
+        "ftime": "15:40",
+        "name": "辻 琉貴",
+        "finish": false,
+        "title": "BLDCモジュールを作った話",
+        "detail": "以前作ったBLDCモーターのモジュールについて話します"
+      },
+      {
+        "time": "15:45",
+        "ftime": "16:00",
+        "name": "高橋 浩賢",
+        "finish": false,
+        "title": "基板設計の面白さ",
+        "detail": "プログラムと設計より基板はおもろい話"
       }
     ]
   }
