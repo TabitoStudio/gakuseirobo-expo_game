@@ -1,8 +1,8 @@
 {
   "state": "begin",
   "date": "2026/02/23",
-  "update": "09:20",
-  "Soccer": {
+  "update": "10:03",
+  "soccer": {
     "schedule": [
       {
         "time": "13:00",
@@ -208,6 +208,7 @@
     "schedule": [
       {
         "time": "14:00",
+        "ftime": "14:20",
         "name": "ftomo",
         "finish": false,
         "title": "関東ブロック大会で負けた",
